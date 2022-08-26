@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Tags on Dyrandy</title>
+    <link>https://dyrandy.github.io/tags/</link>
+    <description>Recent content in Tags on Dyrandy</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Fri, 26 Aug 2022 20:39:54 +0900</lastBuildDate><atom:link href="https://dyrandy.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>cookies</title>
+      <link>https://dyrandy.github.io/tags/cookies/</link>
+      <pubDate>Fri, 26 Aug 2022 20:39:54 +0900</pubDate>
+      
+      <guid>https://dyrandy.github.io/tags/cookies/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>http</title>
+      <link>https://dyrandy.github.io/tags/http/</link>
+      <pubDate>Fri, 26 Aug 2022 20:39:54 +0900</pubDate>
+      
+      <guid>https://dyrandy.github.io/tags/http/</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>

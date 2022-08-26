@@ -1,0 +1,421 @@
+<!doctype html>
+<html lang="en-us">
+  <head>
+    <title>Cookie Fundamentals // Dyrandy</title>
+    <link rel="shortcut icon" href="/favicon.ico" />
+    <meta charset="utf-8" />
+    <meta name="generator" content="Hugo 0.101.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="author" content="Dyrandy" />
+    <meta name="description" content="" />
+    <link rel="stylesheet" href="https://dyrandy.github.io/css/main.min.4a7ec8660f9a44b08c4da97c5f2e31b1192df1d4d0322e65c0dbbc6ecb1b863f.css" />
+
+    
+    <meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Cookie Fundamentals"/>
+<meta name="twitter:description" content="HTTP Cookie 브라우저 쿠키, 웹 쿠키, HTTP 쿠키, 등으로 불리는 ‘쿠키&rsquo; (Cookie)는 서버가 사용자의 웹 브라우저에 전송하는 작은 데이터 조각이다. 브라우저는 그 데이터 조각들을 저장해 놓았다가, 동일한 서버에 재 요청 시 저장된 데이터를 함께 전송한다. 쿠키는 두개의 요청이 같은 브라우저로부터 왔는지 판단할 때 사용된다. 이를 이용하여 사용자의 로그인 상태를 유지할 수 있다. Stateless HTTP 프로토콜에서 상태 정보를 기억시켜주기 때문이다.
+(Stateless : 컴퓨팅에서 무상태 프로토콜(stateless protocol)은 어떠한 이전 요청과도 무관한 각각의 요청을 독립적인 트랜잭션으로 취급하는 통신 프로토콜로, 통신이 독립적인 쌍의 요청과 응답을 이룰 수 있게 하는 방식이다."/>
+
+    <meta property="og:title" content="Cookie Fundamentals" />
+<meta property="og:description" content="HTTP Cookie 브라우저 쿠키, 웹 쿠키, HTTP 쿠키, 등으로 불리는 ‘쿠키&rsquo; (Cookie)는 서버가 사용자의 웹 브라우저에 전송하는 작은 데이터 조각이다. 브라우저는 그 데이터 조각들을 저장해 놓았다가, 동일한 서버에 재 요청 시 저장된 데이터를 함께 전송한다. 쿠키는 두개의 요청이 같은 브라우저로부터 왔는지 판단할 때 사용된다. 이를 이용하여 사용자의 로그인 상태를 유지할 수 있다. Stateless HTTP 프로토콜에서 상태 정보를 기억시켜주기 때문이다.
+(Stateless : 컴퓨팅에서 무상태 프로토콜(stateless protocol)은 어떠한 이전 요청과도 무관한 각각의 요청을 독립적인 트랜잭션으로 취급하는 통신 프로토콜로, 통신이 독립적인 쌍의 요청과 응답을 이룰 수 있게 하는 방식이다." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://dyrandy.github.io/2022/08/cookie-fundamentals/" /><meta property="article:section" content="post" />
+<meta property="article:published_time" content="2022-08-26T20:39:54+09:00" />
+<meta property="article:modified_time" content="2022-08-26T20:39:54+09:00" />
+
+
+
+  </head>
+  <body>
+    <header class="app-header">
+      <a href="https://dyrandy.github.io"><img class="app-header-avatar" src="/namol1.png" alt="Dyrandy" /></a>
+      <h1>Dyrandy</h1>
+      <nav class="app-header-menu">
+          <a class="app-header-menu-item" href="/">Home</a>
+             / 
+          
+          <a class="app-header-menu-item" href="/tags/">Tags</a>
+             / 
+          
+          <a class="app-header-menu-item" href="/about/">About</a>
+      </nav>
+      <p>Computer Guy</p>
+      <div class="app-header-social">
+        
+          <a href="https://github.com/dyrandy" target="_blank" rel="noreferrer noopener">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-github">
+  <title>Github</title>
+  <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
+</svg>
+          </a>
+        
+          <a href="https://twitter.com/dyrandy5" target="_blank" rel="noreferrer noopener">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-twitter">
+  <title>Twitter</title>
+  <path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path>
+</svg>
+          </a>
+        
+      </div>
+    </header>
+    <main class="app-container">
+      
+  <article class="post">
+    <header class="post-header">
+      <h1 class ="post-title">Cookie Fundamentals</h1>
+      <div class="post-meta">
+        <div>
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-calendar">
+  <title>calendar</title>
+  <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line>
+</svg>
+          Aug 26, 2022
+        </div>
+        <div>
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-clock">
+  <title>clock</title>
+  <circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline>
+</svg>
+          9 min read
+        </div>
+        <div>
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tag">
+  <title>tag</title>
+  <path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7.01" y2="7"></line>
+</svg>
+              <a class="tag" href="https://dyrandy.github.io/tags/cookies/">cookies</a>
+              <a class="tag" href="https://dyrandy.github.io/tags/http/">http</a>
+        </div>
+      </div>
+    </header>
+    <div class="post-content">
+      <h2 id="http-cookie">HTTP Cookie</h2>
+<p>브라우저 쿠키, 웹 쿠키, HTTP 쿠키, 등으로 불리는 ‘쿠키&rsquo; (Cookie)는 서버가 사용자의 웹 브라우저에 전송하는 작은 데이터 조각이다. 브라우저는 그 데이터 조각들을 저장해 놓았다가, 동일한 서버에 재 요청 시 저장된 데이터를 함께 전송한다. 쿠키는 두개의 요청이 같은 브라우저로부터 왔는지 판단할 때 사용된다. 이를 이용하여 사용자의 로그인 상태를 유지할 수 있다. Stateless HTTP 프로토콜에서 상태 정보를 기억시켜주기 때문이다.</p>
+<p>(<code>Stateless</code> : 컴퓨팅에서 무상태 프로토콜(stateless protocol)은 어떠한 이전 요청과도 무관한 각각의 요청을 독립적인 트랜잭션으로 취급하는 통신 프로토콜로, 통신이 독립적인 쌍의 요청과 응답을 이룰 수 있게 하는 방식이다. 무상태 프로토콜은 서버가 복수의 요청 시간대에 각각의 통신 파트너에 대한 세션 정보나 상태 보관을 요구하지 않는다)</p>
+<p>Cookie는 주로 다음의 3가지 목적을 위해 사용된다</p>
+<ul>
+<li><code>세션 관리</code> (Session Management = 로그인 정보, 등)</li>
+<li><code>개인화</code> (Personalization = 웹 페이지 테마, 등)</li>
+<li><code>트래킹</code> (Tracking = 사용자 사용 기록 저장, 등)</li>
+</ul>
+<p>각 브라우저들마다 Cookie의 최대 개수 및 최대 크기를 따로 정의하는데 해당 정의는 해마다 조금식 바뀌는 것으로 보인다. 참고 사이트에 의하면 다음과 같이 브라우저 별 Cookie의 최대 개수 및 크기를 정의한다고 한다.</p>
+<table>
+<thead>
+<tr>
+<th>Browser</th>
+<th>Cookie count limit per domain</th>
+<th>Total size of cookies (bytes)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Chrome</td>
+<td>180</td>
+<td>4096</td>
+</tr>
+<tr>
+<td>Firefox</td>
+<td>150</td>
+<td>4097</td>
+</tr>
+<tr>
+<td>Opera</td>
+<td>60</td>
+<td>4096</td>
+</tr>
+<tr>
+<td>Safari</td>
+<td>600</td>
+<td>4093</td>
+</tr>
+<tr>
+<td>Android</td>
+<td>50</td>
+<td>4096</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><a href="https://docs.devexpress.com/AspNet/11912/common-concepts/cookies-support">https://docs.devexpress.com/AspNet/11912/common-concepts/cookies-support</a></li>
+<li><a href="https://www.tutorialspoint.com/What-is-the-maximum-size-of-a-web-browser-s-cookies-value">https://www.tutorialspoint.com/What-is-the-maximum-size-of-a-web-browser-s-cookies-value</a></li>
+</ul>
+<p>쿠키를 만들 때 다양한 원소들이 필요로하는데, 그중 일부는 다음과 같다.</p>
+<ul>
+<li>Cookie의 이름 (쿠키 식별자)</li>
+<li>Cookie의 값</li>
+<li>Cookie의 유효기간, 브라우저가 얼마나 해당 쿠키를 브라우저에 들고 있을 지 결정하는 시간 (exipration date)</li>
+<li>Cookie의 경로, 쿠키가 어떤 URL 경로에서 유효한지(사용할 수 있는지)를 명시해주는 설정 값이다. 이 경로 외에서는 유효하지 않으며 사용할 수 없다.</li>
+<li>Cookie의 도메인, 어떤 서버 및 도메인에서 해당 쿠키를 사용할 수 있는 지 명시 해준다. 해당 서버 및 도메인 외에서는 사용할 수 없다.</li>
+<li>Secure Connection을 사용할지에 대한 여부. SSL 같은 안전한 암호화 통신에서만 쿠키를 사용할 수 있음을 나타내는 설정 값</li>
+<li>HTTPOnly를 사용할지에 대한 여부. 해당 설정이 걸려 있으면 JavaScript를 통해서 Cookie에 접근 할 수 없다.</li>
+<li>Same-Site 설정. <code>Lax</code>, <code>Strict</code>, <code>None</code>의 설정이 있으며 일부 브라우저에서는 Same-Site가 걸려 있지 않으면 Default로 <code>Lax</code> 혹은 <code>None</code>을 사용하게 되어 있다.</li>
+</ul>
+<p><img src="/images/20220826/Untitled.png" alt="Untitled"></p>
+<ul>
+<li>추후에 크롬 Cookie DB의 Column 명을 통해서 더 많은 내용이 있음을 확인할 수 있다.</li>
+</ul>
+<h2 id="쿠키의-종류">쿠키의 종류</h2>
+<h3 id="session-cookie">Session Cookie</h3>
+<p>in-memory cookie, transient cookie, non-persistent cookie 혹은 temporary cookie 라고도 불리며, 메모리에만 존재하는 쿠키로 쿠키를 만든 서버에서 만료시간이 존재하며 세션 쿠키를 발급받은 세션 (Ex: 브라우저) 종료 시 해당 쿠키를 삭제한다.</p>
+<p>어떤 브라우저들은 재시작할 때 세션을 복원해 세션 쿠키가 무기한으로 존재할 수 있다.</p>
+<p>해당 쿠키는 사용자의 단말기(브라우저)에 저장되지 않고 Cookie를 발급해준 서버 측에서 저장된다. (Stateful하다)</p>
+<h3 id="persistent-cookie">Persistent Cookie</h3>
+<p>File Cookie, 한국어로는 영속 쿠키라고 불리며 해당 쿠키는 <code>Expires</code> 속성에 명시된 날짜에 삭제되거나, <code>Max-Age</code> 속성에 명시된 기간 이후에 삭제되는 쿠키를 말한다.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>Set-Cookie: id<span style="color:#f92672">=</span>a3fWa; Expires<span style="color:#f92672">=</span>Wed, <span style="color:#ae81ff">21</span> Oct <span style="color:#ae81ff">2015</span> 07:28:00 GMT;
+</span></span></code></pre></div><p>영속 쿠키는 사용자의 단말기에 저장된다.</p>
+<ul>
+<li>
+<p><strong>Question</strong> : 브라우저에서 Session 쿠키와 Persistent 쿠키를 구분하는 방법이 있을까?</p>
+<p>ㄴ 브라우저에서 Session 쿠키와 Persistent 쿠키를 구분하는 방법은 <code>Expires</code> 속성의 여부에 따라 판단한다고 한다. Session Cookie는 <code>Expires</code> 속성을 가질 수 없다.</p>
+</li>
+<li>
+<p><strong>Question</strong> : 쿠키는 File 및 브라우저에 저장된다면 어디에 저장되는지? (구체적으로), 메모리에 저장된다면 메모리 어디?</p>
+<p>ㄴ 검색한 바로는 Temporary Memory에 저장된다고 한다. 그러나 이게, cache, stack, heap, data, 등의 영역인지 인지하지 못하는 또다른 영역인지 잘 모르겠다. - 추후 분석으로 좀 더 명확한 위치를 알아야 할 것으로 보인다.</p>
+<p>ㄴ Persistent Cookie의 경우 Local 컴퓨터에 저장되게 되는데, 이를 확인할려면 다음과 같은 경로에 접근해야한다. <code>~/Library/Application Support/Google/Chrome/Default</code> 해당 디렉토리에서 <code>ls</code> 명령어를 실행해보면 Local Storage, Session Storage 등 다양한 저장공간도 확인할 수 있다.</p>
+<p><img src="/images/20220826/Untitled%201.png" alt="Untitled"></p>
+<p>또한 files 명령어를 통해 Cookies를 확인해보면 SQLite 형태의 파일로 저장된 것을 확인할 수 있다.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ file Cookies
+</span></span><span style="display:flex;"><span>Cookies: SQLite 3.x database, last written using SQLite version 3038005, file counter 96881, database pages 365, 1st free page 11, free pages 204, cookie 0x11, schema 4, UTF-8, version-valid-for <span style="color:#ae81ff">96881</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>sqlite&gt; .tables
+</span></span><span style="display:flex;"><span>cookies  meta
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>sqlite&gt; PRAGMA table_info<span style="color:#f92672">(</span>cookies<span style="color:#f92672">)</span>;
+</span></span><span style="display:flex;"><span>0|creation_utc|INTEGER|1<span style="color:#f92672">||</span><span style="color:#ae81ff">0</span>
+</span></span><span style="display:flex;"><span>1|host_key|TEXT|1<span style="color:#f92672">||</span><span style="color:#ae81ff">0</span>
+</span></span><span style="display:flex;"><span>2|top_frame_site_key|TEXT|1<span style="color:#f92672">||</span><span style="color:#ae81ff">0</span>
+</span></span><span style="display:flex;"><span>3|name|TEXT|1<span style="color:#f92672">||</span><span style="color:#ae81ff">0</span>
+</span></span><span style="display:flex;"><span>4|value|TEXT|1<span style="color:#f92672">||</span><span style="color:#ae81ff">0</span>
+</span></span><span style="display:flex;"><span>5|encrypted_value|BLOB|1<span style="color:#f92672">||</span><span style="color:#ae81ff">0</span>
+</span></span><span style="display:flex;"><span>6|path|TEXT|1<span style="color:#f92672">||</span><span style="color:#ae81ff">0</span>
+</span></span><span style="display:flex;"><span>7|expires_utc|INTEGER|1<span style="color:#f92672">||</span><span style="color:#ae81ff">0</span>
+</span></span><span style="display:flex;"><span>8|is_secure|INTEGER|1<span style="color:#f92672">||</span><span style="color:#ae81ff">0</span>
+</span></span><span style="display:flex;"><span>9|is_httponly|INTEGER|1<span style="color:#f92672">||</span><span style="color:#ae81ff">0</span>
+</span></span><span style="display:flex;"><span>10|last_access_utc|INTEGER|1<span style="color:#f92672">||</span><span style="color:#ae81ff">0</span>
+</span></span><span style="display:flex;"><span>11|has_expires|INTEGER|1<span style="color:#f92672">||</span><span style="color:#ae81ff">0</span>
+</span></span><span style="display:flex;"><span>12|is_persistent|INTEGER|1<span style="color:#f92672">||</span><span style="color:#ae81ff">0</span>
+</span></span><span style="display:flex;"><span>13|priority|INTEGER|1<span style="color:#f92672">||</span><span style="color:#ae81ff">0</span>
+</span></span><span style="display:flex;"><span>14|samesite|INTEGER|1<span style="color:#f92672">||</span><span style="color:#ae81ff">0</span>
+</span></span><span style="display:flex;"><span>15|source_scheme|INTEGER|1<span style="color:#f92672">||</span><span style="color:#ae81ff">0</span>
+</span></span><span style="display:flex;"><span>16|source_port|INTEGER|1<span style="color:#f92672">||</span><span style="color:#ae81ff">0</span>
+</span></span><span style="display:flex;"><span>17|is_same_party|INTEGER|1<span style="color:#f92672">||</span><span style="color:#ae81ff">0</span>
+</span></span><span style="display:flex;"><span>18|last_update_utc|INTEGER|1<span style="color:#f92672">||</span><span style="color:#ae81ff">0</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>sqlite&gt; <span style="color:#66d9ef">select</span> * from cookies where host_key <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;localhost&#39;</span>;
+</span></span><span style="display:flex;"><span>13301250676749963|localhost<span style="color:#f92672">||</span>Idea-d20d715<span style="color:#f92672">||</span>xxxxx|/|13616610676749963|0|1|13303134028398267|1|1|1|2|1|63342|0|<span style="color:#ae81ff">13301250676749969</span>
+</span></span><span style="display:flex;"><span>13303134028833694|localhost<span style="color:#f92672">||</span>JSESSIONID<span style="color:#f92672">||</span>xxxxx|/|0|0|1|13303134028833694|0|0|1|-1|1|80|0|<span style="color:#ae81ff">13303134028833698</span>
+</span></span></code></pre></div></li>
+</ul>
+<p>위 Cookie Table의 Column 명을 확인해보면, <code>is_persistent</code>와 <code>has_expires</code>를 통해서 Session Cookie인지, Persistent Cookie인지 판별하는게 아닌가 싶다. (그러나 Session 쿠키는 브라우저의 메모리상에만 존재한다고 했는데, 왜 존재하는거지? - 정확한 이유는 아직 모르겠다)</p>
+<p><img src="/images/20220826/Untitled%202.png" alt="Untitled"></p>
+<p>그 이유는 브라우저를 껐다 키지 않아서 였다. 해당 브라우저를 종료 시키고 재시작시 Session이 사라진것을 확인할 수 있었다.</p>
+<p><img src="/images/20220826/Untitled%203.png" alt="Untitled"></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>sqlite&gt; <span style="color:#66d9ef">select</span> * from cookies where host_key <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;localhost&#39;</span>;
+</span></span><span style="display:flex;"><span>13301250676749963|localhost<span style="color:#f92672">||</span>Idea-d20d715<span style="color:#f92672">||</span>xxxxxx|/|13616610676749963|0|1|13303751015084115|1|1|1|2|1|63342|0|<span style="color:#ae81ff">13301250676749969</span>
+</span></span></code></pre></div><ul>
+<li>!!! 위 기준은 Chrome 브라우저 기준이며, Safari, Firefox는 조금 다를 수 있다. 그리고 SQLite DB에 있는 쿠키의 Value들은 전부 암호화 되어 있다. (양방향 암호화)</li>
+<li><strong>FireFox 경로</strong> : <code>~/Library/Application Support/Firefox/Profiles/niftefmu.default-release</code> 에서 <code>cookies.sqlite</code> 파일
+<ul>
+<li>참고로 FireFox 쿠키 SQLite DB에는 Session 쿠키가 저장되지 않는다</li>
+</ul>
+</li>
+<li>Safari 경로 <code>/Users/dyrandy/Library/Containers/com.apple.Safari/Data/Library/Cookies/Cookies.binarycookies</code>
+<ul>
+<li>사파리 또한 FireFox와 동일하게 세션은 저장되지 않는다.</li>
+<li>크롬과 파이어폭스와 달리 SQLite DB 파일이 아닌 Binary 파일이다.</li>
+<li>해당 Binary 파일을 풀기 위해 pip 모듈을 사용하면 된다. (참고 : <a href="https://pypi.org/project/binarycookiesreader/">https://pypi.org/project/binarycookiesreader/</a>)</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h2 id="experiment1-expire-설정">Experiment#1 (Expire 설정)</h2>
+<p>정말로 <code>Expire</code>가 설정되지 않았으면 브라우저가 Session으로 인식할까 테스트해보고자 한다. 먼저 다음과 같은 코드가 있다고 가정해보자.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-jsx" data-lang="jsx"><span style="display:flex;"><span><span style="color:#75715e">// 환경은 NodeJS
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">express</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">require</span>(<span style="color:#e6db74">&#39;express&#39;</span>)
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">app</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">express</span>()
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">port</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">3000</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">app</span>.<span style="color:#a6e22e">get</span>(<span style="color:#e6db74">&#39;/&#39;</span>, (<span style="color:#a6e22e">req</span>, <span style="color:#a6e22e">res</span>) =&gt; {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">res</span>.<span style="color:#a6e22e">cookie</span>(<span style="color:#e6db74">&#34;test_cookie&#34;</span>, <span style="color:#e6db74">&#34;dyrandy&#34;</span>);
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">res</span>.<span style="color:#a6e22e">send</span>(<span style="color:#e6db74">&#39;Hello World!&#39;</span>);
+</span></span><span style="display:flex;"><span>})
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">app</span>.<span style="color:#a6e22e">listen</span>(<span style="color:#a6e22e">port</span>, () =&gt; {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#e6db74">`Example app listening on port </span><span style="color:#e6db74">${</span><span style="color:#a6e22e">port</span><span style="color:#e6db74">}</span><span style="color:#e6db74">`</span>)
+</span></span><span style="display:flex;"><span>})
+</span></span></code></pre></div><p>이제 <code>localhost:3000</code>에 접속하여 Cookie의 설정 상태를 확인해보면 놀랍게도 다음 이미지와 같이 Session으로 할당된 것을 확인 할 수 있다.</p>
+<p><img src="/images/20220826/Untitled%204.png" alt="Untitled"></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-jsx" data-lang="jsx"><span style="display:flex;"><span><span style="color:#a6e22e">sqlite</span><span style="color:#f92672">&gt;</span> <span style="color:#a6e22e">select</span> <span style="color:#f92672">*</span> <span style="color:#a6e22e">from</span> <span style="color:#a6e22e">cookies</span> <span style="color:#a6e22e">where</span> <span style="color:#a6e22e">host_key</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;127.0.0.1&#39;</span>;
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">13304010203325805</span><span style="color:#f92672">|</span><span style="color:#ae81ff">127.0.0.1</span><span style="color:#f92672">||</span><span style="color:#a6e22e">test_cookie</span><span style="color:#f92672">||</span><span style="color:#a6e22e">xxxxxxxxxx</span><span style="color:#f92672">|</span><span style="color:#960050;background-color:#1e0010">/|0|0|0|13304010605994796|0|0|1|-1|1|3000|0|13304010605994799</span>
+</span></span></code></pre></div><p>이제 해당 쿠키의 Expire/Max-Age를 설정해보면 어떨까? 다음 코드와 같이 Expire를 추가해보았다.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-jsx" data-lang="jsx"><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">express</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">require</span>(<span style="color:#e6db74">&#39;express&#39;</span>)
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">app</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">express</span>()
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">port</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">3000</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">app</span>.<span style="color:#a6e22e">get</span>(<span style="color:#e6db74">&#39;/&#39;</span>, (<span style="color:#a6e22e">req</span>, <span style="color:#a6e22e">res</span>) =&gt; {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">res</span>.<span style="color:#a6e22e">cookie</span>(<span style="color:#e6db74">&#34;test_cookie&#34;</span>, <span style="color:#e6db74">&#34;dyrandy&#34;</span>, { <span style="color:#a6e22e">expires</span><span style="color:#f92672">:</span> <span style="color:#66d9ef">new</span> Date(Date.<span style="color:#a6e22e">now</span>() <span style="color:#f92672">+</span> <span style="color:#ae81ff">900000</span> )});
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">res</span>.<span style="color:#a6e22e">send</span>(<span style="color:#e6db74">&#39;Hello World!&#39;</span>);
+</span></span><span style="display:flex;"><span>})
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">app</span>.<span style="color:#a6e22e">listen</span>(<span style="color:#a6e22e">port</span>, () =&gt; {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#e6db74">`Example app listening on port </span><span style="color:#e6db74">${</span><span style="color:#a6e22e">port</span><span style="color:#e6db74">}</span><span style="color:#e6db74">`</span>)
+</span></span><span style="display:flex;"><span>})
+</span></span></code></pre></div><p><img src="/images/20220826/Untitled%205.png" alt="Untitled"></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-jsx" data-lang="jsx"><span style="display:flex;"><span><span style="color:#a6e22e">sqlite</span><span style="color:#f92672">&gt;</span> <span style="color:#a6e22e">select</span> <span style="color:#f92672">*</span> <span style="color:#a6e22e">from</span> <span style="color:#a6e22e">cookies</span> <span style="color:#a6e22e">where</span> <span style="color:#a6e22e">host_key</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;127.0.0.1&#39;</span>;
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">13304010203325805</span><span style="color:#f92672">|</span><span style="color:#ae81ff">127.0.0.1</span><span style="color:#f92672">||</span><span style="color:#a6e22e">test_cookie</span><span style="color:#f92672">||</span><span style="color:#a6e22e">xxxxxxxxxxxxx</span><span style="color:#f92672">|</span><span style="color:#960050;background-color:#1e0010">/|13304011309985761|0|0|13304010409985761|1|1|1|-1|1|3000|0|13304010409985784</span>
+</span></span></code></pre></div><hr>
+<h2 id="쿠키-설정">쿠키 설정</h2>
+<h3 id="domain-및-path">Domain 및 Path</h3>
+<p><code>Domain</code> : 쿠키가 전송되게 될 Host를 명시한다. 이때 호스트가 명시되지 않는다면, Subdomain이 포함되지 않는, 현재 문서 위치의 호스트 일부를 기본값으로 설정한다. 만약 도메인을 명시한다면, Subdomain들은 항상 포함된다. 예를 들면 <code>Domain=test.com</code>이 설정되면, 쿠키들은 <code>sub.test.com</code>과 같은 subdomain 상에 포함된다.</p>
+<p><code>Path</code> : 쿠키 헤더를 전송하기 위하여 요청되는 URL 내에 반드시 존재해야하는 URL 경로다.</p>
+<ul>
+<li>참고로 쿠키는 Port Specific하지 않다. 즉, <code>localhost:8080</code>에서 특정 쿠키를 만들고 사용한다면, <code>localhost:8000</code>에서도 이를 사용할 수 있다. 만약 SetCookie에서 특정 Port를 지정한다면 구분이 가능하다 (위 쿠키 DB의 Column중 16번 Column에 source_port 존재)</li>
+</ul>
+<h3 id="secure-flag">Secure Flag</h3>
+<p><code>Secure</code> 설정이된 쿠키는 HTTPS 프로토콜 상에서 암호화된 요청일 경우에만 전송된다.</p>
+<h3 id="httponly-flag">HTTPOnly Flag</h3>
+<p><code>HTTPOnly</code> 설정이된 쿠키는 JavaScript의 Document.Cookie API에 의해 접근할 수 없다. 서버 쪽에서 저장된 세션 쿠키는 JavaScript를 사용할 필요성이 없기 때문에 <code>HttpOnly</code> Flag가 설정되도 무방하다.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>Set-Cookie: id<span style="color:#f92672">=</span>a3fWa; Expires<span style="color:#f92672">=</span>Wed, <span style="color:#ae81ff">21</span> Oct <span style="color:#ae81ff">2015</span> 07:28:00 GMT; Secure; HttpOnly
+</span></span></code></pre></div><h3 id="samesite">SameSite</h3>
+<p><code>SameSite</code> 쿠키는 쿠키가 Cross-Site 요청과 함께 전송되지 않음을 설정할 수 있다. 이를 통해 CSRF 공격에 대해 보호 방법을 제공하고 있으며, <code>SameSite</code>는 여전히 실험단계에 있다고 한다.</p>
+<p><code>SameSite</code>에 들어가기 앞서 <code>SameSite</code>가 무엇을 의미하는지부터 파악해야한다. 먼저 요기서 “Site”란 Subdomain을 제외 한 최상위 도메인을 일컫는다. 즉, test.example.com에서 example.com을 말하는 것이고 test.example.com과 <a href="https://www.example.com">www.example.com</a> 사이의 요청은 <code>SameSite</code> 요청이다.</p>
+<p>그러나 *.github.io 같은 도메인은 서로 다른 “Site”로 본다, 즉, my.github.io와 your.github.io는 서로 다른 “Site”다. 그리고 같은 도메인이지만, http: 및 https: 처럼 다른 Scheme을 사용한다면 다른 사이트로 구분한다고 한다.</p>
+<p>또한 SameSite를 들어가기 앞서 <code>First-Party Cookie</code>와 <code>Third-Party Cookie</code>를 알아야한다. 만약 다음과 같은 <code>test.com</code>에 접속해본다고 가정해보자. 해당 <code>test.com</code>에서 <code>example.com</code>이 제공하는 이미지인 <code>example.com/image.png</code>를 사용하고 있다고 가정해보자. 이 경우 브라우저는 <code>test.com</code>에 접속해있으면서 <code>example.com</code>으로 요청을 보낸다.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-html" data-lang="html"><span style="display:flex;"><span>&lt;<span style="color:#f92672">html</span>&gt;
+</span></span><span style="display:flex;"><span>  &lt;<span style="color:#f92672">head</span>&gt;
+</span></span><span style="display:flex;"><span>    &lt;<span style="color:#f92672">title</span>&gt;test.com&lt;/<span style="color:#f92672">title</span>&gt;
+</span></span><span style="display:flex;"><span>    &lt;<span style="color:#f92672">meta</span> <span style="color:#a6e22e">property</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;url&#34;</span> <span style="color:#a6e22e">content</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;http://test.com/&#34;</span> /&gt;
+</span></span><span style="display:flex;"><span>  &lt;/<span style="color:#f92672">head</span>&gt;
+</span></span><span style="display:flex;"><span>  &lt;<span style="color:#f92672">body</span>&gt;
+</span></span><span style="display:flex;"><span>    &lt;<span style="color:#f92672">img</span> <span style="color:#a6e22e">src</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;http://example.com/image.png&#34;</span> /&gt;
+</span></span><span style="display:flex;"><span>  &lt;/<span style="color:#f92672">body</span>&gt;
+</span></span><span style="display:flex;"><span>&lt;/<span style="color:#f92672">html</span>&gt;
+</span></span></code></pre></div><p>이 때 만약 <code>test.com</code>에 접속해있는 사용자가 <code>example.com</code>에 대한 쿠키를 가지고 있다면, image를 갖고오는 요청에서 해당 쿠키가 <code>example.com</code>으로 같이 전송된다. 이때 전송되는 <code>example.com</code>의 쿠키를 <code>Third-Party Cookie</code>라 하며, <code>test.com</code>의 쿠키는 <code>First-Party Cookie</code>라 부른다.</p>
+<p>즉, <code>Third-Party Cookie</code>는 사용자가 접속한 페이지와 다른 도메인으로 전송하는 쿠키를 말하고, <code>First-Party Cookie</code>는 사용자가 접속한 페이지와 같은 도메인으로 전송되는 쿠키를 말한다.</p>
+<p>이때 전송되는 <code>Third-Party Cookie</code>에 대하여 제어를 한 것이 바로 <code>SameSite</code>이다.</p>
+<p><code>SameSite</code>에는 3가지 설정이 존재한다. <code>None</code>, <code>Strict</code>, <code>Lax</code> 가 존재한다.</p>
+<ul>
+<li>
+<p><code>None</code> : 해당 값으로 설정된 쿠키의 경우 Cross-Site Request의 경우 항상 전송된다. 즉, <code>test.com</code>에서 <code>example.com</code>의 이미지로 요청을 날릴때, 혹은 POST같은 요청을 보낼 때 쿠키는 항상 전송된다. <code>SameSite=None</code> 설정 시 <code>Secure Flag</code>가 필수로 적용되어야 한다고 한다. (크롬 기준)</p>
+<p><img src="/images/20220826/Untitled%206.png" alt="Untitled"></p>
+</li>
+<li>
+<p><code>Strict</code> : 가장 강력한 정책으로 어떠한 Cross-Site Request이더라도 <code>Third-Party Cookie</code>는 전송되지 않는다.</p>
+</li>
+<li>
+<p><code>Lax</code> : Strict 설정과 유사하지만 Strict만큼 강한 정책이 아닌, 상대적으로 느슨한 정책이다. 예를 들면 다음과 같다.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>A cookie with &#34;SameSite=Lax&#34; will be sent with a same-site request, 
+</span></span><span style="display:flex;"><span>or a cross-site top-level navigation with a &#34;safe&#34; HTTP method.
+</span></span></code></pre></div><p>즉, 위 문구를 번역해보자면, SameSite=Lax가 설정된 쿠키는 Same-Site 요청, Top Level Navigation(웹 페이지 이동)과, &ldquo;안전한&rdquo; HTTP Method의 경우에만 전송된다는 것이다.</p>
+<p>요기서 Top Level Navigation, 즉, 웹 페이지 이동은 <!-- raw HTML omitted --> 태그에 있는 링크를 클릭하거나, window.location.replace 등으로 자동으로 이동되는 경우, 그리고 302 같은 Redirection을 말한다. <!-- raw HTML omitted -->과 <!-- raw HTML omitted -->를 삽입하여 발생하는 경우는 포함하지 않는다.</p>
+<p>그리고 “안전한&quot; HTTP Method라 하면 GET Method를 일컫는다. POST와 DELETE같은 요청은 서버의 상태를 바꿀 가능성이 있기 때문에 전송되지 않는다고 한다.</p>
+</li>
+</ul>
+<p>!!! 참고로 크롬은 <code>Lax</code>를 기본설정으로 사용하고 있다. 즉, 예전에는 <code>SameSite</code>가 없었을 시 <code>SameSite=None</code>이 기본설정이었지만, <a href="https://www.chromium.org/updates/same-site/">2020년 2월 4일 크롬 Version 80 배포</a>에서 <code>SameSite</code>가 설정되지 않으면 <code>Lax</code>를 Default 값으로 지정했다.</p>
+<p><img src="/images/20220826/Untitled%207.png" alt="Untitled"></p>
+<p>!!! FireFox의 경우 기본적으로 OFF이며, <code>about:config</code>에 접속 시 해당 설정을 바꿀 수 있다. (69버전 이후부터)</p>
+<p><img src="/images/20220826/Untitled%208.png" alt="Untitled"></p>
+<hr>
+<h2 id="experiment2-default-lax">Experiment#2 (Default Lax)</h2>
+<p>정말로 브라우저 별로 <code>SameSite</code>가 걸리지 않는다면 <code>Lax</code>로 바뀌는지 및 안바뀌는지 <code>Chrome</code>, <code>Firefox</code>, <code>Safari</code>로 실험 해보겠다.</p>
+<p>먼저 다음과 같은 코드가 있다고 가정하자, <code>Session Cookie</code>가 만들어질 것이고, 해당 쿠키에는 <code>SameSite</code> 설정이 없다.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-jsx" data-lang="jsx"><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">app</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">require</span>(<span style="color:#e6db74">&#34;express&#34;</span>)()
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">app</span>.<span style="color:#a6e22e">get</span>(<span style="color:#e6db74">&#34;/&#34;</span>, (<span style="color:#a6e22e">req</span>, <span style="color:#a6e22e">res</span>) =&gt; {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">cookie</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;test=dyrandy; Max-Age=9000000;&#34;</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">res</span>.<span style="color:#a6e22e">setHeader</span>(<span style="color:#e6db74">&#34;set-cookie&#34;</span>, [<span style="color:#a6e22e">cookie</span>])
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">res</span>.<span style="color:#a6e22e">send</span>(<span style="color:#e6db74">&#34;Made Cookie&#34;</span>)
+</span></span><span style="display:flex;"><span>})
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">app</span>.<span style="color:#a6e22e">listen</span>(<span style="color:#ae81ff">8000</span>, ()=&gt;<span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#e6db74">&#34;listening on port 8000&#34;</span>))
+</span></span></code></pre></div><h3 id="chrome">Chrome</h3>
+<p>먼저 크롬에서 해당 사이트에 접속 해보았다. 쿠키 생성 도메인에 접속하여 <code>SameSite</code> 설정을 보았지만, 아무런 설정이 없는 것을 확인 할 수 있다.</p>
+<p><img src="/images/20220826/Untitled%209.png" alt="Untitled"></p>
+<p>그리하여 SameSite가 적용이 안되나 싶었지만, SQLite 파일을 통해 쿠키의 설정을 확인해보았다.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>sqlite&gt; <span style="color:#66d9ef">select</span> * from cookies where host_key <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;xxx.xxx.xxx.xxx&#39;</span>;
+</span></span><span style="display:flex;"><span>13304101943912455|xxx.xxx.xxx.xxx<span style="color:#f92672">||</span>test<span style="color:#f92672">||</span>dyrandy|/|0|0|0|13304102248051917|0|0|1|-1|1|8000|0|<span style="color:#ae81ff">13304102248051921</span>
+</span></span></code></pre></div><p>뒤에서 5번째 Column이 <code>SameSite</code> 설정이므로 -1이 값이 된다.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>test <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;13304101943912455|xxx.xxx.xxx.xxx||test||dyrandy|/|0|0|0|13304102248051917|0|0|1|-1|1|8000|0|13304102248051921&#34;</span>
+</span></span><span style="display:flex;"><span>val <span style="color:#f92672">=</span> test<span style="color:#f92672">.</span>split(<span style="color:#e6db74">&#39;|&#39;</span>)
+</span></span><span style="display:flex;"><span>print(val[<span style="color:#ae81ff">14</span>])
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># -1</span>
+</span></span></code></pre></div><ul>
+<li>참고로, 2 = Strict, 1 = Lax, 0 = None이다.</li>
+<li>애초에 <code>SameSite=None</code>인 쿠키가 <code>Secure</code> 옵션 없이 생성되지 않는다.</li>
+</ul>
+<h3 id="firefox">Firefox</h3>
+<p>파이어폭스도 크롬과 동일하게 쿠키 생성 도메인에 접속하여 <code>SameSite</code> 설정을 확인해보았다. 그림과 같이 <code>SameSite=None</code>이 적용된 것을 확인할 수 있다.</p>
+<p><img src="/images/20220826/Untitled%2010.png" alt="Untitled"></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># /Users/dyrandy/Library/Application Support/Firefox/Profiles/niftefmu.default-release/cookies.sqlite</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>sqlite&gt; PRAGMA table_info<span style="color:#f92672">(</span>moz_cookies<span style="color:#f92672">)</span>;
+</span></span><span style="display:flex;"><span>0|id|INTEGER|0<span style="color:#f92672">||</span><span style="color:#ae81ff">1</span>
+</span></span><span style="display:flex;"><span>1|originAttributes|TEXT|1|<span style="color:#e6db74">&#39;&#39;</span>|<span style="color:#ae81ff">0</span>
+</span></span><span style="display:flex;"><span>2|name|TEXT|0<span style="color:#f92672">||</span><span style="color:#ae81ff">0</span>
+</span></span><span style="display:flex;"><span>3|value|TEXT|0<span style="color:#f92672">||</span><span style="color:#ae81ff">0</span>
+</span></span><span style="display:flex;"><span>4|host|TEXT|0<span style="color:#f92672">||</span><span style="color:#ae81ff">0</span>
+</span></span><span style="display:flex;"><span>5|path|TEXT|0<span style="color:#f92672">||</span><span style="color:#ae81ff">0</span>
+</span></span><span style="display:flex;"><span>6|expiry|INTEGER|0<span style="color:#f92672">||</span><span style="color:#ae81ff">0</span>
+</span></span><span style="display:flex;"><span>7|lastAccessed|INTEGER|0<span style="color:#f92672">||</span><span style="color:#ae81ff">0</span>
+</span></span><span style="display:flex;"><span>8|creationTime|INTEGER|0<span style="color:#f92672">||</span><span style="color:#ae81ff">0</span>
+</span></span><span style="display:flex;"><span>9|isSecure|INTEGER|0<span style="color:#f92672">||</span><span style="color:#ae81ff">0</span>
+</span></span><span style="display:flex;"><span>10|isHttpOnly|INTEGER|0<span style="color:#f92672">||</span><span style="color:#ae81ff">0</span>
+</span></span><span style="display:flex;"><span>11|inBrowserElement|INTEGER|0|0|<span style="color:#ae81ff">0</span>
+</span></span><span style="display:flex;"><span>12|sameSite|INTEGER|0|0|<span style="color:#ae81ff">0</span>
+</span></span><span style="display:flex;"><span>13|rawSameSite|INTEGER|0|0|<span style="color:#ae81ff">0</span>
+</span></span><span style="display:flex;"><span>14|schemeMap|INTEGER|0|0|<span style="color:#ae81ff">0</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>sqlite&gt; <span style="color:#66d9ef">select</span> * from moz_cookies where host<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;xxx.xxx.xxx.xxx&#34;</span>;
+</span></span><span style="display:flex;"><span>130301<span style="color:#f92672">||</span>test|dyrandy|xxx.xxx.xxx.xxx|/|1660529133|1659629133437204|1659629114551764|0|0|0|1|0|<span style="color:#ae81ff">1</span>
+</span></span></code></pre></div><p>Python코드를 돌려보면</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>test <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;130301||test|dyrandy|xxx.xxx.xxx.xxx|/|1660529133|1659629133437204|1659629114551764|0|0|0|1|0|1&#34;</span>
+</span></span><span style="display:flex;"><span>val <span style="color:#f92672">=</span> test<span style="color:#f92672">.</span>split(<span style="color:#e6db74">&#39;|&#39;</span>)
+</span></span><span style="display:flex;"><span>print(val[<span style="color:#ae81ff">13</span>])
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 0</span>
+</span></span></code></pre></div><p>SameSite 설정은 맨뒤에서 3번째, 즉 0이 된다. (요기서 봐야할 것은 <code>rawSameSite</code> 설정이다)</p>
+<p>그러면 Lax Cookie는 어떤 값일까?</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>sqlite<span style="color:#f92672">&gt;</span> select <span style="color:#f92672">*</span> <span style="color:#f92672">from</span> moz_cookies where host<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;xxx.xxx.xxx.xxx&#34;</span>;
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">130316</span><span style="color:#f92672">||</span>test<span style="color:#f92672">|</span>dyrandy<span style="color:#f92672">|</span>xxx<span style="color:#f92672">.</span>xxx<span style="color:#f92672">.</span>xxx<span style="color:#f92672">.</span>xxx<span style="color:#f92672">|/|</span><span style="color:#ae81ff">1660529672</span><span style="color:#f92672">|</span><span style="color:#ae81ff">1659629672510695</span><span style="color:#f92672">|</span><span style="color:#ae81ff">1659629114551764</span><span style="color:#f92672">|</span><span style="color:#ae81ff">0</span><span style="color:#f92672">|</span><span style="color:#ae81ff">0</span><span style="color:#f92672">|</span><span style="color:#ae81ff">0</span><span style="color:#f92672">|</span><span style="color:#ae81ff">1</span><span style="color:#f92672">|</span><span style="color:#ae81ff">1</span><span style="color:#f92672">|</span><span style="color:#ae81ff">1</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>test <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;130301||test|dyrandy|xxx.xxx.xxx.xxx|/|1660529133|1659629133437204|1659629114551764|0|0|0|1|1|1&#34;</span>
+</span></span><span style="display:flex;"><span>val <span style="color:#f92672">=</span> test<span style="color:#f92672">.</span>split(<span style="color:#e6db74">&#39;|&#39;</span>)
+</span></span><span style="display:flex;"><span>print(val[<span style="color:#ae81ff">13</span>])
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 1</span>
+</span></span></code></pre></div><ul>
+<li>!!! 참고 Strict는 2다</li>
+</ul>
+<h3 id="safari">Safari</h3>
+<p>사파리의 경우는 아래와 같이 <code>SameSite</code> 설정이 없으면 아무것도 나오지 않는다. 그리하여 Cookie의 경로에 들어가 직접 Binary Cookie를 읽어보고자 했다.</p>
+<p>![Untitled](//images/20220826/Untitled 11.png)</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">$</span> pip install binarycookiesreader
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">$</span> bcr <span style="color:#f92672">-</span>i Cookie<span style="color:#f92672">.</span>binarycookies
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">$</span> cat Cookies<span style="color:#f92672">.</span>txt <span style="color:#f92672">|</span> grep xxx<span style="color:#f92672">.</span>xxx<span style="color:#f92672">.</span>xxx<span style="color:#f92672">.</span>xxx
+</span></span><span style="display:flex;"><span>Cookie : test<span style="color:#f92672">=</span>dyrandy; domain<span style="color:#f92672">=</span>xxx<span style="color:#f92672">.</span>xxx<span style="color:#f92672">.</span>xxx<span style="color:#f92672">.</span>xxx; path<span style="color:#f92672">=/</span>; expires<span style="color:#f92672">=</span>Mon, <span style="color:#ae81ff">01</span> Jan <span style="color:#ae81ff">2001</span>; Unknown
+</span></span></code></pre></div><p>그러나 쿠키는 읽을 수 있으나, <code>SameSite</code> 설정에 대한 내용은 없다.</p>
+<h2 id="참고">참고</h2>
+<ul>
+<li><a href="https://developer.mozilla.org/ko/docs/Web/HTTP/Cookies">https://developer.mozilla.org/ko/docs/Web/HTTP/Cookies</a></li>
+<li><a href="https://ko.wikipedia.org/wiki/HTTP_%EC%BF%A0%ED%82%A4">https://ko.wikipedia.org/wiki/HTTP_쿠키</a></li>
+<li><a href="https://web.dev/i18n/ko/samesite-cookies-explained/">https://web.dev/i18n/ko/samesite-cookies-explained/</a></li>
+<li><a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Set-Cookie/SameSite">https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Set-Cookie/SameSite</a></li>
+<li><a href="https://www.hahwul.com/2020/01/18/samesite-lax/">https://www.hahwul.com/2020/01/18/samesite-lax/</a></li>
+<li><a href="https://docs.devexpress.com/AspNet/11912/common-concepts/cookies-support">https://docs.devexpress.com/AspNet/11912/common-concepts/cookies-support</a></li>
+<li><a href="https://www.whitehatsec.com/glossary/content/persistent-session-cookie">https://www.whitehatsec.com/glossary/content/persistent-session-cookie</a></li>
+<li><a href="https://web.dev/i18n/ko/samesite-cookies-explained/">https://web.dev/i18n/ko/samesite-cookies-explained/</a></li>
+<li><a href="https://seob.dev/posts/%EB%B8%8C%EB%9D%BC%EC%9A%B0%EC%A0%80-%EC%BF%A0%ED%82%A4%EC%99%80-SameSite-%EC%86%8D%EC%84%B1/">https://seob.dev/posts/브라우저-쿠키와-SameSite-속성/</a></li>
+<li><a href="https://www.chromium.org/administrators/policy-list-3/cookie-legacy-samesite-policies/">https://www.chromium.org/administrators/policy-list-3/cookie-legacy-samesite-policies/</a></li>
+</ul>
+
+    </div>
+    <div class="post-footer">
+      
+    </div>
+  </article>
+
+    </main>
+  </body>
+</html>

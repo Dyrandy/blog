@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Posts on Dyrandy</title>
+    <link>https://dyrandy.github.io/post/</link>
+    <description>Recent content in Posts on Dyrandy</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Fri, 26 Aug 2022 20:39:54 +0900</lastBuildDate><atom:link href="https://dyrandy.github.io/post/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Cookie Fundamentals</title>
+      <link>https://dyrandy.github.io/2022/08/cookie-fundamentals/</link>
+      <pubDate>Fri, 26 Aug 2022 20:39:54 +0900</pubDate>
+      
+      <guid>https://dyrandy.github.io/2022/08/cookie-fundamentals/</guid>
+      <description>HTTP Cookie 브라우저 쿠키, 웹 쿠키, HTTP 쿠키, 등으로 불리는 ‘쿠키&amp;rsquo; (Cookie)는 서버가 사용자의 웹 브라우저에 전송하는 작은 데이터 조각이다. 브라우저는 그 데이터 조각들을 저장해 놓았다가, 동일한 서버에 재 요청 시 저장된 데이터를 함께 전송한다. 쿠키는 두개의 요청이 같은 브라우저로부터 왔는지 판단할 때 사용된다. 이를 이용하여 사용자의 로그인 상태를 유지할 수 있다. Stateless HTTP 프로토콜에서 상태 정보를 기억시켜주기 때문이다.
+(Stateless : 컴퓨팅에서 무상태 프로토콜(stateless protocol)은 어떠한 이전 요청과도 무관한 각각의 요청을 독립적인 트랜잭션으로 취급하는 통신 프로토콜로, 통신이 독립적인 쌍의 요청과 응답을 이룰 수 있게 하는 방식이다.</description>
+    </item>
+    
+  </channel>
+</rss>
