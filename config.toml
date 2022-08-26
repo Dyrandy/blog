@@ -24,7 +24,8 @@ paginate = 8
 [params]
   author = "Dyrandy"
   description = "Computer Guy"
-  menu_item_separator = " - "
+  menu_item_separator = " / "
+  avatar = "namol1.png"
   [[params.social]]
     icon = "github"
     name = "Github"
@@ -33,6 +34,10 @@ paginate = 8
     icon = "twitter"
     name = "Twitter"
     url = "https://twitter.com/dyrandy5"
+
+[permalinks]
+  post = "/:year/:month/:slug/"
+
 
   # Default theme
   #[params.style]
