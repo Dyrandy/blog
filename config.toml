@@ -1,5 +1,5 @@
 baseURL = "https://dyrandy.github.io"
-title = "Dyrandy Blog"
+title = "Dyrandy"
 themesDir = "themes"
 theme = "m10c"
 paginate = 8
