@@ -3,5 +3,5 @@
 	url = https://github.com/vaga/hugo-theme-m10c.git
 [submodule "public"]
 	path = public
-	url = http://github.com/Dyrandy/dyrandy.github.io.git
+	url = http://github.com/dyrandy/dyrandy.github.io.git
 	branch = main
