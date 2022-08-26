@@ -1,7 +1,7 @@
 ---
 title: "Cookie Fundamentals"
 date: 2022-08-26T20:39:54+09:00
-draft: true
+draft: false
 ---
 ## HTTP Cookie
 
