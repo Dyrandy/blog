@@ -7,7 +7,7 @@ echo -e "\033[0;32mDeploying updates to GitHub...\033[0m"
 hugo -t m10c
 
 # Go To Public folder, sub module commit
-cd public
+cd deploy
 # Add changes to git.
 git add .
 
