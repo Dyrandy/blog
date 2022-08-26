@@ -36,8 +36,14 @@ paginate = 8
     url = "https://twitter.com/dyrandy5"
 
 [permalinks]
-  post = "/:year/:month/:slug/"
+  post = "/:year/:month/:day/:slug/"
 
+[outputs]
+  outputs = ["html", "json"]
+
+[module]
+  [[module.imports]]
+    path = "github.com/kaushalmodi/hugo-search-fuse-js"
 
   # Default theme
   #[params.style]

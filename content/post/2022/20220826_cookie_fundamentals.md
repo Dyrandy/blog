@@ -1,14 +1,18 @@
 ---
 title: "Cookie Fundamentals"
 date: 2022-08-26T20:39:54+09:00
+description: "쿠키 기초"
 categories:
 - web
 - fundamental
 tags:
 - cookies
 - http
+- web
 keywords:
 - cookie
+toc: true
+draft: false
 ---
 ## HTTP Cookie
 
@@ -379,7 +383,7 @@ print(val[13])
 
 사파리의 경우는 아래와 같이 `SameSite` 설정이 없으면 아무것도 나오지 않는다. 그리하여 Cookie의 경로에 들어가 직접 Binary Cookie를 읽어보고자 했다.
 
-![Untitled](//images/20220826/Untitled 11.png)
+![Untitled](/images/20220826/Untitled%2011.png)
 
 ```python
 $ pip install binarycookiesreader
