@@ -38,6 +38,8 @@ paginate = 8
 [permalinks]
   post = "/:year/:month/:slug/"
 
+[output]
+mediaType = application/json
 
   # Default theme
   #[params.style]
