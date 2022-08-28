@@ -41,7 +41,7 @@ paginate = 8
   post = "/:year/:month/:day/:slug/"
 
 [outputs]
-  outputs = ["html", "json"]
+  home = ["HTML", "RSS", "JSON"]
 
 [module]
   [[module.imports]]
