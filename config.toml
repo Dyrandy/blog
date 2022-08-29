@@ -25,7 +25,7 @@ paginate = 8
   author = "Dyrandy"
   description = "Computer Guy"
   menu_item_separator = " / "
-  avatar = "namol1.png"
+  avatar = "logo.png"
   search = true
   search_minify = false
   [[params.social]]

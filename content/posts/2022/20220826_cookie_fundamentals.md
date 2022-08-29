@@ -265,7 +265,7 @@ Set-Cookie: id=a3fWa; Expires=Wed, 21 Oct 2015 07:28:00 GMT; Secure; HttpOnly
     
     즉, 위 문구를 번역해보자면, SameSite=Lax가 설정된 쿠키는 Same-Site 요청, Top Level Navigation(웹 페이지 이동)과, "안전한" HTTP Method의 경우에만 전송된다는 것이다.
     
-    요기서 Top Level Navigation, 즉, 웹 페이지 이동은 <a> 태그에 있는 링크를 클릭하거나, window.location.replace 등으로 자동으로 이동되는 경우, 그리고 302 같은 Redirection을 말한다. <iframe>과 <img>를 삽입하여 발생하는 경우는 포함하지 않는다.
+    요기서 Top Level Navigation, 즉, 웹 페이지 이동은 &lt;a&gt; 태그에 있는 링크를 클릭하거나, window.location.replace 등으로 자동으로 이동되는 경우, 그리고 302 같은 Redirection을 말한다. &lt;iframe&gt;과 &lt;img&gt;를 삽입하여 발생하는 경우는 포함하지 않는다.
     
     그리고 “안전한" HTTP Method라 하면 GET Method를 일컫는다. POST와 DELETE같은 요청은 서버의 상태를 바꿀 가능성이 있기 때문에 전송되지 않는다고 한다.
     
