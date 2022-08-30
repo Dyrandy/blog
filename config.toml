@@ -21,6 +21,9 @@ paginate = 8
     url = "/about/"
     weight = 3
 
+[permalinks]
+  post = "/:year/:month/:day/:slug/"
+
 [params]
   author = "Dyrandy"
   description = "Computer Guy"
@@ -36,9 +39,6 @@ paginate = 8
     icon = "twitter"
     name = "Twitter"
     url = "https://twitter.com/dyrandy5"
-
-[permalinks]
-  post = "/:year/:month/:day/:slug/"
 
 [outputs]
   home = ["HTML", "RSS", "JSON"]
