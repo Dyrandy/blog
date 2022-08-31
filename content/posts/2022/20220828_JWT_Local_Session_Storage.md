@@ -150,13 +150,8 @@ Chrome Web Storage
 두번째 탭에 데이터가 없음을 확인
 
 ## 참고
-
-[https://jwt.io/](https://jwt.io/)
-
-[https://jihyun03.tistory.com/52](https://jihyun03.tistory.com/52)
-
-[https://ko.javascript.info/localstorage](https://ko.javascript.info/localstorage)
-
-[https://www.redhat.com/ko/topics/cloud-native-apps/stateful-vs-stateless](https://www.redhat.com/ko/topics/cloud-native-apps/stateful-vs-stateless)
-
-[https://5equal0.tistory.com/entry/StatefulStateless-Stateful-vs-Stateless-서비스와-HTTP-및-REST](https://5equal0.tistory.com/entry/StatefulStateless-Stateful-vs-Stateless-%EC%84%9C%EB%B9%84%EC%8A%A4%EC%99%80-HTTP-%EB%B0%8F-REST)
+- [https://jwt.io/](https://jwt.io/)
+- [https://jihyun03.tistory.com/52](https://jihyun03.tistory.com/52)
+- [https://ko.javascript.info/localstorage](https://ko.javascript.info/localstorage)
+- [https://www.redhat.com/ko/topics/cloud-native-apps/stateful-vs-stateless](https://www.redhat.com/ko/topics/cloud-native-apps/stateful-vs-stateless)
+- [https://5equal0.tistory.com/entry/StatefulStateless-Stateful-vs-Stateless-서비스와-HTTP-및-REST](https://5equal0.tistory.com/entry/StatefulStateless-Stateful-vs-Stateless-%EC%84%9C%EB%B9%84%EC%8A%A4%EC%99%80-HTTP-%EB%B0%8F-REST)
