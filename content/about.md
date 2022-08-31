@@ -3,7 +3,7 @@ title = "About"
 +++
 
 ## Who Am I?
-- A CTF Player
+- CTF Player
 - Security Analyst
 - Gamer
 

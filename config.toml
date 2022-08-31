@@ -22,7 +22,7 @@ paginate = 8
     weight = 3
 
 [permalinks]
-  post = "/:year/:month/:day/:slug/"
+  posts = "/:year/:month/:day/:slug/"
 
 [params]
   author = "Dyrandy"
