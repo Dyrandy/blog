@@ -10,6 +10,7 @@ tags:
 - ctf
 - web
 - writeup
+- codegate
 keywords:
 - ctf
 toc: true
